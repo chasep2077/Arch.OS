@@ -4,8 +4,8 @@ OS: 'Windows 11  (10.0.26200) Core' Language: 'en' Physical Memory: 32637 MB
 BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1
 System  architecture: x64
 Process architecture: x64
-Date: 2026-08-21T13:51:11Z
-[Licensing::IpcConnector] Successfully connected to: "LicenseClient-cmcca" at "2026-08-21T13:51:11.8996875Z"
+Date: 2026-08-21T20:17:34Z
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-cmcca" at "2026-08-21T20:17:34.5560531Z"
 
 COMMAND LINE ARGUMENTS:
 C:\Program Files\Unity\Hub\Editor\6000.5.9f1\Editor\Unity.exe
@@ -15,19 +15,19 @@ C:\Program Files\Unity\Hub\Editor\6000.5.9f1\Editor\Unity.exe
 -name
 AssetImportWorkerHW1
 -projectPath
-D:/Unity/Projects/Arch.OS
+D:/Unity/Projects/ArchOS
 -logFile
 Logs/AssetImportWorkerHW1.log
 -srvPort
-65143
+54256
 -parentPid
-11940
+46044
 -analyticsCloudUserId
-anonymous
+2476016361725
 -analyticsCloudProjectId
-093096ea-3254-48d0-bbc1-a85d6b7b45af
+b75b16e9-a135-4e0e-9f49-95d8c9ef6317
 -analyticsLocalProjectId
-dc460dc31702128468bb1a836be1d25f
+d0df8a2589c1b984697eaa6a15a054e4
 -editorAnalyticsEnabled
 1
 -cbmEditorLicense
@@ -46,8 +46,8 @@ LicenseClient-cmcca
 -force-d3d12
 -name
 AssetImport
-Successfully changed project path to: D:/Unity/Projects/Arch.OS
-D:/Unity/Projects/Arch.OS
+Successfully changed project path to: D:/Unity/Projects/ArchOS
+D:/Unity/Projects/ArchOS
 [UnityMemory] Configuration Parameters - Can be set up in boot.config
     "memorysetup-temp-allocator-size-gi-baking-worker=262144"
     "memorysetup-temp-allocator-size-gi-baking-worker=262144"
@@ -85,12 +85,12 @@ D:/Unity/Projects/Arch.OS
     "memorysetup-job-temp-allocator-block-size=2097152"
     "memorysetup-job-temp-allocator-block-size-background=1048576"
     "memorysetup-job-temp-allocator-reduction-small-platforms=262144"
-Player connection [45808]  Target information:
+Player connection [43616]  Target information:
 
-Player connection [45808]  * "[IP] 192.168.0.16 [Port] 0 [Flags] 2 [Guid] 1387984022 [EditorId] 1387984022 [Version] 1048832 [Id] WindowsEditor(7,DadsHouse) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+Player connection [43616]  * "[IP] 192.168.0.16 [Port] 0 [Flags] 2 [Guid] 3062350099 [EditorId] 3062350099 [Version] 1048832 [Id] WindowsEditor(7,DadsHouse) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
 
-Player connection [45808] Host joined multi-casting on [225.0.0.222:54997]...
-Player connection [45808] Host joined alternative multi-casting on [225.0.0.222:34997]...
+Player connection [43616] Host joined multi-casting on [225.0.0.222:54997]...
+Player connection [43616] Host joined alternative multi-casting on [225.0.0.222:34997]...
 JobSystem: Creating JobQueue using job-worker-count value 7
 Input System module state changed to: Initialized.
 [Physics::Module] Initialized fallback backend.
@@ -102,10 +102,10 @@ Library Redirect Path: Library/
 [Physics::Module] SDK Version: 4.1.2
 [Physics::Module] Integration Version: 1.0.0
 [Physics::Module] Threading Mode: Multi-Threaded
-Refreshing native plugins compatible for Editor in 7.19 ms, found 5 plugins.
+Refreshing native plugins compatible for Editor in 6.19 ms, found 4 plugins.
 Initialize engine version: 6000.5.9f1 (b57deb96f08d)
 [Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/6000.5.9f1/Editor/Data/Resources/UnitySubsystems
-[Subsystems] Discovering subsystems at path D:/Unity/Projects/Arch.OS/Assets
+[Subsystems] Discovering subsystems at path D:/Unity/Projects/ArchOS/Assets
 Forcing GfxDevice: Direct3D 12
 GfxDevice: creating device client; kGfxThreadingModeNonThreaded
 d3d12: failed to query info queue interface (0x80004002).
@@ -121,30 +121,30 @@ Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/6000.5.9f1/Editor/Data/Managed
 Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/6000.5.9f1/Editor/Data/BCLExtensions/runtime/netstandard2.1'
 Mono path[2] = 'C:/Program Files/Unity/Hub/Editor/6000.5.9f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
 Mono config path = 'C:/Program Files/Unity/Hub/Editor/6000.5.9f1/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56752
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56456
 CodeReloadManager initialized
 Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: C:/Program Files/Unity/Hub/Editor/6000.5.9f1/Editor/Data/PlaybackEngines/WebGLSupport/UnityEditor.WebGL.Extensions.dll
+Register platform support module: C:/Program Files/Unity/Hub/Editor/6000.5.9f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Registered in 0.004938 seconds.
 [Licensing::Client] Error: HandshakeResponse reported an error:
 	ResponseCode: 505
 	ResponseStatus: Unsupported protocol version '1.18.3'.
 [Licensing::Module] Error: Failed to handshake to channel: "LicenseClient-cmcca"
 [Licensing::IpcConnector] LicenseClient-cmcca channel disconnected successfully.
-[Licensing::IpcConnector] Successfully connected to: "LicenseClient-cmcca-6000.5.9" at "2026-08-21T13:51:13.0371585Z"
-Registering precompiled unity dll's ...
-Register platform support module: C:/Program Files/Unity/Hub/Editor/6000.5.9f1/Editor/Data/PlaybackEngines/WebGLSupport/UnityEditor.WebGL.Extensions.dll
-Register platform support module: C:/Program Files/Unity/Hub/Editor/6000.5.9f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
-Registered in 0.003978 seconds.
-[Licensing::Client] Code 10 while verifying Licensing Client signature (process Id: 24048, path: "C:/Program Files/Unity/Hub/Editor/6000.5.9f1/Editor/Data/Resources/Licensing/Client/Unity.Licensing.Client.exe")
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-cmcca-6000.5.9" at "2026-08-21T20:17:35.7292948Z"
+[Licensing::Client] Code 10 while verifying Licensing Client signature (process Id: 49540, path: "C:/Program Files/Unity/Hub/Editor/6000.5.9f1/Editor/Data/Resources/Licensing/Client/Unity.Licensing.Client.exe")
 [Licensing::Module] LicensingClient has failed validation; ignoring
 [Licensing::Client] Handshaking with LicensingClient:
   Version:                 1.18.3+d7ffd15
-  Session Id:              3d77edb7a3c74f80a75b94707c230b0f
-  Correlation Id:          a8e11a8370d6abd7f4b30fa7dc9247ac
-  External correlation Id: 1129586573037728030
+  Session Id:              f77194559eb14460b47da4391d8c9f1e
+  Correlation Id:          7a0e6cc50520b7d7d082399789010226
+  External correlation Id: 1880207818742226244
   Machine Id:              Ami7h+YzfzBZ3SQjOCt1Cm0Mzzs=
-[Licensing::Module] Successfully connected to LicensingClient on channel: "LicenseClient-cmcca-6000.5.9" (connect: 0.00s, validation: 0.02s, handshake: 0.01s)
-[Licensing::IpcConnector] Successfully connected to: "LicenseClient-cmcca-6000.5.9-notifications" at "2026-08-21T13:51:13.0627426Z"
-[Licensing::Module] Licensing Background thread has ended after 1.16s
+[Licensing::Module] Successfully connected to LicensingClient on channel: "LicenseClient-cmcca-6000.5.9" (connect: 0.00s, validation: 0.00s, handshake: 0.01s)
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-cmcca-6000.5.9-notifications" at "2026-08-21T20:17:35.7407847Z"
+[Licensing::Module] Licensing Background thread has ended after 1.19s
 Native extension for WindowsStandalone target not found
 Native extension for WebGL target not found
 Package Manager log level set to [2]
@@ -153,22 +153,23 @@ Package Manager log level set to [2]
 [Package Manager] Cannot connect to Unity Package Manager local server
 ScheduleIndexationOnStartup MainProcess:False IndexOnStartup:True
 Mono: successfully reloaded assembly
-- Finished resetting the current domain, in  0.612 seconds
-Domain Reload Profiling: 1196ms
-	BeginReloadAssembly (165ms)
+- Finished resetting the current domain, in  0.596 seconds
+Domain Reload Profiling: 1224ms
+	BeginReloadAssembly (170ms)
 	RebuildCommonClasses (5ms)
-	RebuildNativeTypeToScriptingClass (17ms)
-	initialDomainReloadingComplete (94ms)
-	LoadAllAssembliesAndSetupDomain (303ms)
-		LoadAssemblies (162ms)
-		AnalyzeDomain (222ms)
-			TypeCache.Refresh (220ms)
-				TypeCache.ScanAssembly (206ms)
-	FinalizeReload (613ms)
+	RebuildNativeTypeToScriptingClass (20ms)
+	initialDomainReloadingComplete (108ms)
+	LoadAllAssembliesAndSetupDomain (325ms)
+		LoadAssemblies (167ms)
+		AnalyzeDomain (239ms)
+			TypeCache.Refresh (238ms)
+				TypeCache.ScanAssembly (223ms)
+	FinalizeReload (597ms)
 		SetupLoadedEditorAssemblies (0ms)
-			BeforeProcessingInitializeOnLoad (132ms)
-			ProcessInitializeOnLoadAttributes (104ms)
-			ProcessInitializeOnLoadMethodAttributes (291ms)
+			InitializePlatformSupportModulesInManaged (3ms)
+			BeforeProcessingInitializeOnLoad (106ms)
+			ProcessInitializeOnLoadAttributes (101ms)
+			ProcessInitializeOnLoadMethodAttributes (297ms)
 Initializing Unity extensions:
 [Licensing::Client] Successfully resolved entitlement details
 [Licensing::Module] License group:
@@ -181,56 +182,61 @@ Curl error 3: URL rejected: Malformed input to a URL function
 Worker process is ready to serve import requests
 Import Worker Mode flag is 0x00
 Begin MonoManager ReloadAssembly
-Refreshing native plugins compatible for Editor in 3.46 ms, found 5 plugins.
+Refreshing native plugins compatible for Editor in 2.87 ms, found 4 plugins.
 Native extension for WindowsStandalone target not found
 Native extension for WebGL target not found
 [Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
 [Package Manager] Unable to send message (not connected to server process).
 [Package Manager] Cannot connect to Unity Package Manager local server
-Refreshing native plugins compatible for Editor in 4.30 ms, found 5 plugins.
+Refreshing native plugins compatible for Editor in 3.78 ms, found 4 plugins.
 [Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
 [Package Manager] Unable to send message (not connected to server process).
 [Package Manager] Cannot connect to Unity Package Manager local server
 ScheduleIndexationOnStartup MainProcess:False IndexOnStartup:True
 Mono: successfully reloaded assembly
-- Finished resetting the current domain, in  0.929 seconds
-Domain Reload Profiling: 1954ms
-	BeginReloadAssembly (255ms)
-		DisableScriptedObjects (11ms)
-		CreateAndSetChildDomain (36ms)
-	RebuildCommonClasses (7ms)
-	RebuildNativeTypeToScriptingClass (16ms)
-	initialDomainReloadingComplete (99ms)
+- Finished resetting the current domain, in  0.803 seconds
+Domain Reload Profiling: 1823ms
+	BeginReloadAssembly (241ms)
+		DisableScriptedObjects (12ms)
+		CreateAndSetChildDomain (32ms)
+	RebuildCommonClasses (8ms)
+	RebuildNativeTypeToScriptingClass (17ms)
+	initialDomainReloadingComplete (106ms)
 	LoadAllAssembliesAndSetupDomain (646ms)
-		LoadAssemblies (445ms)
-		AnalyzeDomain (249ms)
-			TypeCache.Refresh (177ms)
-				TypeCache.ScanAssembly (163ms)
-			BuildScriptInfoCaches (64ms)
+		LoadAssemblies (431ms)
+		AnalyzeDomain (246ms)
+			TypeCache.Refresh (182ms)
+				TypeCache.ScanAssembly (166ms)
+			BuildScriptInfoCaches (57ms)
 			ResolveRequiredComponents (5ms)
-	FinalizeReload (929ms)
+	FinalizeReload (804ms)
 		SetupLoadedEditorAssemblies (0ms)
-			BeforeProcessingInitializeOnLoad (85ms)
-			ProcessInitializeOnLoadAttributes (377ms)
-			ProcessInitializeOnLoadMethodAttributes (239ms)
-			AfterProcessingInitializeOnLoad (7ms)
-		AwakeInstancesAfterBackupRestoration (7ms)
+			BeforeProcessingInitializeOnLoad (92ms)
+			ProcessInitializeOnLoadAttributes (294ms)
+			ProcessInitializeOnLoadMethodAttributes (124ms)
+			AfterProcessingInitializeOnLoad (8ms)
+		AwakeInstancesAfterBackupRestoration (8ms)
 AcceleratorClientConnectionCallback - disconnected - :0
 Launched and connected shader compiler UnityShaderCompiler.exe after 0.03 seconds
-Refreshing native plugins compatible for Editor in 3.78 ms, found 5 plugins.
+Refreshing native plugins compatible for Editor in 2.89 ms, found 4 plugins.
 Unloading 22 Unused Serialized files (Serialized files now loaded: 0)
 Curl error 3: URL rejected: Malformed input to a URL function
-Unloading 7393 unused Assets / (7.4 MB). Loaded Objects now: 8422.
-Memory consumption went from 361.1 MB to 353.7 MB.
-Total: 13.917400 ms (FindLiveObjects: 0.844700 ms CreateObjectMapping: 3.460700 ms MarkObjects: 6.036200 ms  DeleteObjects: 3.573400 ms)
+Unloading 6661 unused Assets / (6.5 MB). Loaded Objects now: 7641.
+Memory consumption went from 332.8 MB to 326.3 MB.
+Total: 10.039300 ms (FindLiveObjects: 0.678800 ms CreateObjectMapping: 2.806800 ms MarkObjects: 4.149600 ms  DeleteObjects: 2.401800 ms)
 
 ========================================================================
 Received Prepare
 AcceleratorClientConnectionCallback - disconnected - :0
-Refreshing native plugins compatible for Editor in 3.98 ms, found 5 plugins.
+Refreshing native plugins compatible for Editor in 3.48 ms, found 4 plugins.
 Unloading 22 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 22 unused Assets / (2.6 MB). Loaded Objects now: 8422.
-Memory consumption went from 353.1 MB to 350.4 MB.
-Total: 8.113200 ms (FindLiveObjects: 0.459800 ms CreateObjectMapping: 1.117900 ms MarkObjects: 6.186600 ms  DeleteObjects: 0.346600 ms)
+Unloading 22 unused Assets / (2.6 MB). Loaded Objects now: 7641.
+Memory consumption went from 325.4 MB to 322.8 MB.
+Total: 7.230500 ms (FindLiveObjects: 0.476700 ms CreateObjectMapping: 1.344000 ms MarkObjects: 5.025500 ms  DeleteObjects: 0.382300 ms)
 
 Prepare: number of updated asset objects reloaded= 0
+Editor requested this worker to shutdown with reason: Editor is closing down
+AcceleratorClientConnectionCallback - disconnected - :0
+AssetImportWorker is now disconnected from the server
+Process exiting
+Exiting without the bug reporter. Application will terminate with return code 0
