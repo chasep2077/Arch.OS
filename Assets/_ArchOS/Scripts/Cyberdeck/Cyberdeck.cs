@@ -5,13 +5,6 @@ using UnityEngine;
 
 namespace ArchOS
 {
-    public enum DeckQuality
-    {
-        Poor,
-        Standard,
-        Excellent
-    }
-
     public class Cyberdeck
     {
         private readonly List<IDeckModule> _installedModules = new List<IDeckModule>();
