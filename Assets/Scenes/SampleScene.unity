@@ -1584,7 +1584,7 @@ MonoBehaviour:
   _move: 1
   _body: 1
   _emp: 1
-  _quality: 0
+  _deckQuality: 0
 --- !u!4 &1896906139
 Transform:
   m_ObjectHideFlags: 0
