@@ -39006,3 +39006,33 @@ Asset Pipeline Refresh (id=017a31ae5968c31468e3bedf9197bb28): Total: 3.910 secon
 
 [Licensing::Client] Successfully resolved entitlement details
 [Licensing::Client] Successfully resolved entitlement details
+Asset Pipeline Refresh (id=19f87e2b3f2549441b230ec481427060): Total: 0.015 seconds - Initiated by RefreshV2(AllowForceSynchronousImport)
+Importing 'GUID: 99c9720ab356a0642a771bea13969a05 - Path: Assets/Scenes/SampleScene.unity' with importer (DefaultImporter)
+Imported 'GUID: 99c9720ab356a0642a771bea13969a05' -> (Import Result ID: '9cbaf3679882f869940c101073500195') in 0.004 seconds [static dependencies only]. Details - ImportResultOutputID=378ca25c6c95e370f41ed482e616ed68 DependenciesID=706dd1e9539d373472e9ac91d8446138 StaticDependenciesID=6fb279095e289cf37d1f9fa66fcaba26 
+Refreshing native plugins compatible for Editor in 3.42 ms, found 4 plugins.
+Asset Pipeline Refresh (id=b00d2d191463f0849bd883da859ba846): Total: 0.109 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+MonoPathRemapper: Attempts to remap: 1412217; Successful remaps: 359426
+Serialized file version minimum: 22, current 23
+[LAYOUT] About to save layout D:\Unity\Projects\Arch.OS\UserSettings\Layouts\default-6000.dwlt
+[LAYOUT] About to save layout C:/Users/cmcca/AppData/Roaming/Unity/Editor-5.x/Preferences\Layouts\current\default-6000.dwlt
+Input System module state changed to: ShutdownInProgress.
+Input Polling Thread exited.
+Input System module state changed to: Shutdown.
+[Physics::Module] Cleanup current backend.
+[Physics::Module] Id: 0xf2b8ea05
+[Licensing::IpcConnector] LicenseClient-cmcca-6000.5.9-notifications channel disconnected successfully.
+[Licensing::IpcConnector] LicenseClient-cmcca-6000.5.9 channel disconnected successfully.
+Shut down.
+Lingering sessions upon destruction of worker manager
+AcceleratorClientConnectionCallback - disconnected - :0
+Cleanup mono
+CodeReloadManager destroyed
+abort_threads: Failed aborting id: 0000000000007C98, mono_thread_manage will ignore it
+
+abort_threads: Failed aborting id: 0000000000007C98, mono_thread_manage will ignore it
+
+debugger-agent: Unable to listen on 4968
+Checking for leaked weakptr:
+  Found no leaked weakptrs.
+[Package Manager] Server process was shutdown
+##utp:{"type":"MemoryLeaks","version":2,"phase":"Immediate","time":1787470391287,"processId":11620,"allocatedMemory":66613531,"memoryLabels":[{"Default":367073},{"Permanent":15516},{"NewDelete":114117},{"Thread":4208248},{"Manager":822056},{"VertexData":8},{"Geometry":816},{"Texture":24},{"Shader":869906},{"Material":24},{"GfxDevice":65432},{"GfxThread":9216},{"Animation":952},{"Audio":1168},{"FreeType":8},{"FontEngine":736},{"Physics":2146},{"Physics2D":16},{"Serialization":164880},{"Input":45280},{"JobScheduler":256},{"TextLib":90295},{"Mono":48},{"MonoCode":128},{"ScriptingNativeRuntime":2224620},{"BaseObject":1622024},{"Resource":1208},{"Renderer":3080},{"Transform":4685},{"File":48556},{"WebCam":616},{"Culling":32},{"Terrain":11442},{"Wind":24},{"STL":40},{"String":9816},{"StaticString":3808},{"Utility":2673994},{"Curl":48},{"PoolAlloc":2360},{"AI":80},{"TypeTree":13262111},{"CodeReload":448},{"RuntimeInitializeOnLoadManager":64},{"Sprites":102},{"SpriteAtlas":120},{"GI":7816},{"Director":8296},{"CloudService":7064},{"WebRequest":12946},{"VR":47114},{"SceneManager":608},{"Video":208},{"LazyScriptCache":32},{"NativeArray":33130328},{"Camera":17},{"Secure":265},{"SerializationCache":1576},{"APIUpdating":10320},{"Subsystems":336},{"VirtualTexturing":57888},{"StaticSafetyDebugInfo":278528},{"Analytics":552},{"Hierarchy":1176},{"UIElements":925472},{"CoreStats":13688},{"Identifiers":6768},{"Gui":269111},{"EditorUtility":380326},{"VersionControl":8},{"Undo":931},{"AssetDatabase":4752168},{"AssetImporter":40},{"EditorGi":328},{"UnityConnect":35345},{"Upm":1988},{"UpmDiagnostics":8},{"AssetCompliance":64},{"DrivenProperties":72},{"LocalIPC":211},{"ProfilerEditor":9746},{"CoreBusinessMetrics":3480},{"Windowing":456},{"Licensing":664},{"AssetReference":32},{"IPCStream":32}]}
