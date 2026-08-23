@@ -1,5 +1,8 @@
 using NUnit.Framework;
+using System;
 using System.Collections.Generic;
+using Unity.GraphToolkit.Editor;
+using UnityEngine;
 
 namespace ArchOS
 {
@@ -70,6 +73,23 @@ namespace ArchOS
             }
 
             return true;
+        }
+
+        public int GetMaxDepth(Level node = null)
+        {
+            if (node == null) node = Root;
+
+            if(node.Children.Count == 0) return 0;
+
+            int maxDepth = 0;
+
+            foreach(Level child in node.Children)
+            {
+                int depth = GetMaxDepth(child);
+                maxDepth = Mathf.Max(maxDepth, depth);
+            }
+
+            return maxDepth + 1;
         }
     }
 }
