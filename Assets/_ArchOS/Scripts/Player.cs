@@ -5,8 +5,11 @@ using UnityEngine;
 
 namespace ArchOS
 {
-    public class Netrunner : MonoBehaviour, IController, IDataPersistence
+    public class Player : MonoBehaviour, IController
     {
+        private Cyberdeck _deck;
+
+
         [Header("Player ID")]
         [SerializeField] private string _name = "New Player";
 
@@ -24,7 +27,6 @@ namespace ArchOS
 
         [Header("Cyberdeck Config")]
         [SerializeField] private DeckQuality _deckQuality = DeckQuality.Poor;
-        private Cyberdeck _deck;
 
         public string Name => _name;
         public int Int => _int;
@@ -61,8 +63,24 @@ namespace ArchOS
             _deck = new Cyberdeck(_deckQuality);
         }
 
+        // Save and Load System OLD
+        public void SaveData(PlayerData data)
+        {
+            data.Name = Name;
+            data.Int = Int;
+            data.Ref = Ref;
+            data.Dex = Dex;
+            data.Tech = Tech;
+            data.Cool = Cool;
+            data.Will = Will;
+            data.Luck = Luck;
+            data.Move = Move;
+            data.Body = Body;
+            data.Emp = Emp;
+            data.DeckQuality = DeckQuality;
+            data.InstalledModules = InstalledModules;
+        }
 
-        // Save and Load System
         public void LoadData(PlayerData data)
         {
             _name = data.Name;
@@ -81,23 +99,6 @@ namespace ArchOS
             {
                 _deck.AddModule(module);
             }
-        }
-
-        public void SaveData(ref PlayerData data)
-        {
-            data.Name = Name;
-            data.Int = Int;
-            data.Ref = Ref;
-            data.Dex = Dex;
-            data.Tech = Tech;
-            data.Cool = Cool;
-            data.Will = Will;
-            data.Luck = Luck;
-            data.Move = Move;
-            data.Body = Body;
-            data.Emp = Emp;
-            data.DeckQuality = DeckQuality;
-            data.InstalledModules = InstalledModules;
         }
     }
 }

@@ -18,7 +18,7 @@ namespace ArchOS
 
         private void Awake()
         {
-            if(instance != null)
+            if (instance != null)
             {
                 Debug.LogError("Found more than one Data Persistence Manager in the scene.");
             }
@@ -43,11 +43,21 @@ namespace ArchOS
             this.playerData = new PlayerData();
         }
 
+        public void SaveGame()
+        {
+            foreach (IDataPersistence dataPersistenceObj in dataPersistenceObjects)
+            {
+                dataPersistenceObj.SaveData(playerData);
+            }
+
+            dataHandler.Save(playerData);
+        }
+
         public void LoadGame()
         {
             this.playerData = dataHandler.Load();
 
-            if(this.playerData == null)
+            if (this.playerData == null)
             {
                 Debug.Log("No data was found. Initializing data to defaults.");
                 NewGame();
@@ -57,16 +67,6 @@ namespace ArchOS
             {
                 dataPersistenceObj.LoadData(playerData);
             }
-        }
-
-        public void SaveGame()
-        {
-            foreach(IDataPersistence dataPersistenceObj in dataPersistenceObjects)
-            {
-                dataPersistenceObj.SaveData(ref playerData);
-            }
-
-            dataHandler.Save(playerData);
         }
 
         private List<IDataPersistence> FindAllDataPersistenceObjects()
