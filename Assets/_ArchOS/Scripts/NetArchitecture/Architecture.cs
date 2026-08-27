@@ -1,13 +1,13 @@
-using NUnit.Framework;
 using System;
 using System.Collections.Generic;
-using Unity.GraphToolkit.Editor;
 using UnityEngine;
 
 namespace ArchOS
 {
     public class Architecture
     {
+        public event Action OnArchitectureModified;
+
         public string Name { get; private set; }
         public string Description { get; private set; }
         public Level Root { get; private set; }
@@ -33,7 +33,9 @@ namespace ArchOS
         {
             if (level == null || target == null) return false;
 
-            return target.AddChild(level);
+            bool success = target.AddChild(level);
+            if (success) OnArchitectureModified?.Invoke();
+            return success;
         }
 
         // Removing a level promotes its first child into its position.
@@ -50,7 +52,7 @@ namespace ArchOS
                 // The level being removed is the root.
                 Root = level.Children[0];
 
-                for(int i = 1; i < level.Children.Count; i++)
+                for (int i = 1; i < level.Children.Count; i++)
                 {
                     Root.AddChild(level.Children[i]);
                 }
@@ -65,13 +67,14 @@ namespace ArchOS
 
                 parent.RemoveChild(level);
             }
-            
+
             // Detaches all children from the removed level.
             foreach (Level child in children)
             {
                 level.RemoveChild(child);
             }
 
+            OnArchitectureModified?.Invoke();
             return true;
         }
 
@@ -79,11 +82,11 @@ namespace ArchOS
         {
             if (node == null) node = Root;
 
-            if(node.Children.Count == 0) return 0;
+            if (node.Children.Count == 0) return 0;
 
             int maxDepth = 0;
 
-            foreach(Level child in node.Children)
+            foreach (Level child in node.Children)
             {
                 int depth = GetMaxDepth(child);
                 maxDepth = Mathf.Max(maxDepth, depth);

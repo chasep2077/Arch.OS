@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 
 namespace ArchOS
@@ -33,7 +32,7 @@ namespace ArchOS
             return true;
         }
 
-        public void SetFunction(Function function = null)
+        public void SetFunction(Function function)
         {
             Function = function ?? new NoneFunction();
         }

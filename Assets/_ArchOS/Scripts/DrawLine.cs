@@ -4,10 +4,17 @@ namespace ArchOS
 {
     public class DrawLine : MonoBehaviour
     {
-        public LineRenderer line;
+        private LineRenderer line;
 
         public Transform pointA;
         public Transform pointB;
+        public Material material;
+
+        void Start()
+        {
+            line = gameObject.AddComponent<LineRenderer>();
+            line.material = material;
+        }
 
         void Update()
         {
