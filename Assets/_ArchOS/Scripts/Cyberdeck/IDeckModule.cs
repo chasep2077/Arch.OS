@@ -11,7 +11,7 @@ namespace ArchOS
     {
         public string Name { get; }
         public string Description { get; }
-        public int Slots { get; }
-        public int Cost { get; }
+        public int CostEB { get; }
+        public int SlotCount { get; }
     }
 }

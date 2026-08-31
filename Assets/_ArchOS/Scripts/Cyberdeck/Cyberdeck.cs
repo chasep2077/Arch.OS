@@ -16,16 +16,16 @@ namespace ArchOS
             DeckQuality.Poor => 100,
             DeckQuality.Standard => 500,
             DeckQuality.Excellent => 1000,
-            _ => -1
+            _ => 0
         };
         public int MaxSlots => Quality switch
         {
             DeckQuality.Poor => 5,
             DeckQuality.Standard => 7,
             DeckQuality.Excellent => 9,
-            _ => -1
+            _ => 0
         };
-        public int CurrentSlots => _installedModules.Sum(m => m.Slots);
+        public int CurrentSlots => _installedModules.Sum(m => m.SlotCount);
         public int AvailableSlots => MaxSlots - CurrentSlots;
 
         public Cyberdeck(DeckQuality quality = DeckQuality.Poor)
@@ -41,7 +41,7 @@ namespace ArchOS
         public bool AddModule(IDeckModule module)
         {
             if (module == null) return false;
-            if (CurrentSlots + module.Slots > MaxSlots) return false;
+            if (CurrentSlots + module.SlotCount > MaxSlots) return false;
 
             if (module is Hardware hardware)
             {
@@ -51,6 +51,7 @@ namespace ArchOS
             }
 
             _installedModules.Add(module);
+            Debug.Log($"Module '{module.Name}' installed");
             return true;
         }
 

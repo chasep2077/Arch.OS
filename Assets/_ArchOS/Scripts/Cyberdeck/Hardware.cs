@@ -1,20 +1,17 @@
-using UnityEngine;
-
 namespace ArchOS
 {
     public abstract class Hardware : IDeckModule
     {
-        public string Name { get; protected set; }
-        public string Description { get; protected set; }
-        public int Slots { get; protected set; }
-        public int Cost { get; protected set; }
+        public ModuleSO Data { get; private set; }
 
-        public Hardware(string name, string description, int slots, int cost)
+        public string Name => Data != null ? Data.Name : "NewProgram";
+        public string Description => Data != null ? Data.Description : "";
+        public int CostEB => Data != null ? Data.CostEB : 0;
+        public int SlotCount => Data != null ? Data.SlotCount : 1;
+
+        public Hardware(ModuleSO data)
         {
-            Name = name;
-            Description = description;
-            Slots = slots;
-            Cost = cost;
+            Data = data;
         }
 
         public virtual void Install() { }

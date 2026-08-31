@@ -26,6 +26,7 @@ namespace ArchOS
             instance = this;
         }
 
+        [System.Obsolete]
         private void Start()
         {
             this.dataHandler = new FileDataHandler(Application.persistentDataPath, fileName);
@@ -69,6 +70,7 @@ namespace ArchOS
             }
         }
 
+        [System.Obsolete]
         private List<IDataPersistence> FindAllDataPersistenceObjects()
         {
             IEnumerable<IDataPersistence> dataPersistenceObjects = FindObjectsOfType<MonoBehaviour>().OfType<IDataPersistence>();

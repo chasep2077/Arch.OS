@@ -1,104 +1,76 @@
-using System;
+using ChaseP.Utils;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace ArchOS
 {
-    public class Player : MonoBehaviour, IController
+    public class Player : MonoBehaviour, IDamageable, IController
     {
         private Cyberdeck _deck;
+        private HealthComponent _healthComponent;
 
-
-        [Header("Player ID")]
+        [Header("Player Name")]
         [SerializeField] private string _name = "New Player";
 
         [Header("Player Stats")]
-        [SerializeField, Min(1)] private int _int = 1;
-        [SerializeField, Min(1)] private int _ref = 1;
-        [SerializeField, Min(1)] private int _dex = 1;
-        [SerializeField, Min(1)] private int _tech = 1;
-        [SerializeField, Min(1)] private int _cool = 1;
-        [SerializeField, Min(1)] private int _will = 1;
-        [SerializeField, Min(1)] private int _luck = 1;
-        [SerializeField, Min(1)] private int _move = 1;
-        [SerializeField, Min(1)] private int _body = 1;
-        [SerializeField, Min(1)] private int _emp = 1;
+        [SerializeField, Min(1)] private int _interfaceRank = 1;
+        [SerializeField, Min(1)] private int _maxHealth = 10;
 
         [Header("Cyberdeck Config")]
         [SerializeField] private DeckQuality _deckQuality = DeckQuality.Poor;
 
+        [SerializeField] private List<ModuleSO> _startingModuleData = new();
+
         public string Name => _name;
-        public int Int => _int;
-        public int Ref => _ref;
-        public int Dex => _dex;
-        public int Tech => _tech;
-        public int Cool => _cool;
-        public int Will => _will;
-        public int Luck => _luck;
-        public int Move => _move;
-        public int Body => _body;
-        public int Emp => _emp;
-        public int MaxHealth
-        {
-            get
-            {
-                return 10 + (5 * (int)Mathf.Ceil((_body + _will) / 2f));
-            }
-        }
-        public int MaxHumanity
-        {
-            get
-            {
-                return 10 * _emp;
-            }
-        }
+        public int InterfaceRank => _interfaceRank;
+        public int MaxHealth => _healthComponent != null ? _healthComponent.MaxHealth : _maxHealth;
+        public int Health => _healthComponent != null ? _healthComponent.Health : 0;
         public DeckQuality DeckQuality => _deckQuality;
         public Cyberdeck Deck => _deck;
-        public IReadOnlyList<IDeckModule> InstalledModules => _deck.InstalledModules;
+        public IReadOnlyList<IDeckModule> InstalledModules => _deck?.InstalledModules;
 
+        private void Awake()
+        {
+            // Initialize components in Awake so other scripts can safely query them in Start
+            _deck = new Cyberdeck(_deckQuality);
+            _healthComponent = new HealthComponent(_maxHealth);
+
+            _healthComponent.OnDeath += HandlePlayerDeath;
+        }
 
         private void Start()
         {
-            _deck = new Cyberdeck(_deckQuality);
-        }
-
-        // Save and Load System OLD
-        public void SaveData(PlayerData data)
-        {
-            data.Name = Name;
-            data.Int = Int;
-            data.Ref = Ref;
-            data.Dex = Dex;
-            data.Tech = Tech;
-            data.Cool = Cool;
-            data.Will = Will;
-            data.Luck = Luck;
-            data.Move = Move;
-            data.Body = Body;
-            data.Emp = Emp;
-            data.DeckQuality = DeckQuality;
-            data.InstalledModules = InstalledModules;
-        }
-
-        public void LoadData(PlayerData data)
-        {
-            _name = data.Name;
-            _int = data.Int;
-            _ref = data.Ref;
-            _dex = data.Dex;
-            _tech = data.Tech;
-            _cool = data.Cool;
-            _will = data.Will;
-            _luck = data.Luck;
-            _move = data.Move;
-            _body = data.Body;
-            _emp = data.Emp;
-            _deckQuality = data.DeckQuality;
-            foreach (IDeckModule module in InstalledModules)
+            // Load starting modules into the deck
+            foreach (ModuleSO moduleData in _startingModuleData)
             {
-                _deck.AddModule(module);
+                if (moduleData == null) continue;
+
+                // Turn the ScriptableObject data into a runtime module instance
+                IDeckModule runtimeModule = ModuleFactory.CreateModule(moduleData);
+                if (runtimeModule != null)
+                {
+                    _deck.AddModule(runtimeModule);
+                }
             }
+        }
+
+        private void OnDestroy()
+        {
+            if (_healthComponent != null)
+            {
+                _healthComponent.OnDeath -= HandlePlayerDeath;
+            }
+        }
+
+        private void HandlePlayerDeath(HealthComponent health)
+        {
+            Debug.Log($"{_name} has flatlined!");
+            // Trigger jack out, game over screen, or combat cleanup here
+        }
+
+        public void Damage(int amount)
+        {
+            _healthComponent?.Damage(amount);
         }
     }
 }
