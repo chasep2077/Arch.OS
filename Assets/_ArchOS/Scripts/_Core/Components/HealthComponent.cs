@@ -26,9 +26,9 @@ namespace ChaseP.Utils
             ModifyHealth(-amount);
         }
 
-        public void Heal(int amount, bool OverrideDead = false)
+        public void Heal(int amount, bool overrideDead = false)
         {
-            if (amount <= 0 || (IsDead && OverrideDead == false)) return;
+            if (amount <= 0 || (IsDead && overrideDead == false)) return;
 
             ModifyHealth(amount);
         }
@@ -41,7 +41,7 @@ namespace ChaseP.Utils
 
             if (Health <= 0)
             {
-                OnDeath?.Invoke(this);
+                OnDeath?.Invoke();
             }
         }
     }

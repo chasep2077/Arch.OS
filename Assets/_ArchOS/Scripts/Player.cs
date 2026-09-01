@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace ArchOS
 {
-    public class Player : MonoBehaviour, IDamageable, IController
+    public class Player : MonoBehaviour, IDamageable, IController, ICaster
     {
         private Cyberdeck _deck;
         private HealthComponent _healthComponent;
@@ -18,20 +18,21 @@ namespace ArchOS
 
         [Header("Cyberdeck Config")]
         [SerializeField] private DeckQuality _deckQuality = DeckQuality.Poor;
-
         [SerializeField] private List<ModuleSO> _startingModuleData = new();
 
         public string Name => _name;
         public int InterfaceRank => _interfaceRank;
+
         public int MaxHealth => _healthComponent != null ? _healthComponent.MaxHealth : _maxHealth;
         public int Health => _healthComponent != null ? _healthComponent.Health : 0;
+        
         public DeckQuality DeckQuality => _deckQuality;
         public Cyberdeck Deck => _deck;
-        public IReadOnlyList<IDeckModule> InstalledModules => _deck?.InstalledModules;
+        
+        public IReadOnlyList<ISlotable> InstalledModules => _deck?.InstalledModules;
 
         private void Awake()
         {
-            // Initialize components in Awake so other scripts can safely query them in Start
             _deck = new Cyberdeck(_deckQuality);
             _healthComponent = new HealthComponent(_maxHealth);
 
@@ -40,16 +41,28 @@ namespace ArchOS
 
         private void Start()
         {
-            // Load starting modules into the deck
-            foreach (ModuleSO moduleData in _startingModuleData)
-            {
-                if (moduleData == null) continue;
+            LoadStartingModules();
+        }
 
-                // Turn the ScriptableObject data into a runtime module instance
-                IDeckModule runtimeModule = ModuleFactory.CreateModule(moduleData);
-                if (runtimeModule != null)
+        private void LoadStartingModules()
+        {
+            foreach(ModuleSO moduleData in _startingModuleData)
+            {
+                if(moduleData == null)
                 {
-                    _deck.AddModule(runtimeModule);
+                    Debug.LogWarning("Player has a null starting module.");
+                    continue;
+                }
+
+                ISlotable module = moduleData.CreateInstance(this);
+
+                if (_deck.AddModule(module))
+                {
+                    Debug.Log($"Loaded module '{module.Name}' onto {Name}'s cyberdeck.");
+                }
+                else
+                {
+                    Debug.LogWarning($"Failed to load module '{moduleData.name}' onto {Name}'s cyberdeck.");
                 }
             }
         }
@@ -62,15 +75,19 @@ namespace ArchOS
             }
         }
 
-        private void HandlePlayerDeath(HealthComponent health)
+        private void HandlePlayerDeath()
         {
             Debug.Log($"{_name} has flatlined!");
-            // Trigger jack out, game over screen, or combat cleanup here
         }
 
         public void Damage(int amount)
         {
             _healthComponent?.Damage(amount);
+        }
+
+        public void Heal(int amount, bool overrideDead = false)
+        {
+            _healthComponent?.Heal(amount, overrideDead);
         }
     }
 }

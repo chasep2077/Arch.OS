@@ -7,10 +7,10 @@ namespace ArchOS
 {
     public class Cyberdeck
     {
-        private readonly List<IDeckModule> _installedModules = new List<IDeckModule>();
+        private readonly List<ISlotable> _installedModules = new();
 
         public DeckQuality Quality { get; private set; }
-        public IReadOnlyList<IDeckModule> InstalledModules => _installedModules;
+        public IReadOnlyList<ISlotable> InstalledModules => _installedModules;
         public int Cost => Quality switch
         {
             DeckQuality.Poor => 100,
@@ -25,7 +25,7 @@ namespace ArchOS
             DeckQuality.Excellent => 9,
             _ => 0
         };
-        public int CurrentSlots => _installedModules.Sum(m => m.SlotCount);
+        public int CurrentSlots => _installedModules.Sum(module => module.SlotCount);
         public int AvailableSlots => MaxSlots - CurrentSlots;
 
         public Cyberdeck(DeckQuality quality = DeckQuality.Poor)
@@ -38,34 +38,38 @@ namespace ArchOS
             Quality = quality;
         }
 
-        public bool AddModule(IDeckModule module)
+        public bool CanInstall(ISlotable module)
         {
-            if (module == null) return false;
-            if (CurrentSlots + module.SlotCount > MaxSlots) return false;
+            if (module == null && ContainsModule(module)) return false;
 
-            if (module is Hardware hardware)
-            {
-                if (_installedModules.Contains(hardware)) return false;
+            return CurrentSlots + module.SlotCount <= MaxSlots;
+        }
 
-                hardware.Install();
-            }
+        public bool AddModule(ISlotable module)
+        {
+            if (!CanInstall(module)) return false;
 
             _installedModules.Add(module);
+
             Debug.Log($"Module '{module.Name}' installed");
+
             return true;
         }
 
-        public bool RemoveModule(IDeckModule module)
+        public bool RemoveModule(ISlotable module)
         {
-            if (module == null || !_installedModules.Contains(module)) return false;
+            if (module == null) return false;
 
-            if (module is Hardware hardware)
-            {
-                hardware.Uninstall();
-            }
+            if (!_installedModules.Remove(module)) return false;
 
-            _installedModules.Remove(module);
+            Debug.Log($"Module '{module.Name}' removed.");
+
             return true;
+        }
+
+        public bool ContainsModule(ISlotable module)
+        {
+            return module != null && _installedModules.Contains(module);
         }
     }
 }
