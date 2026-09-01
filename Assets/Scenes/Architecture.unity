@@ -771,6 +771,7 @@ MonoBehaviour:
   _deckQuality: 1
   _startingModuleData:
   - {fileID: 11400000, guid: 061b18be76e4ed34caecfe083a709307, type: 2}
+  - {fileID: 11400000, guid: 8480eff76fbe2304288c9dcc3a8a2794, type: 2}
 --- !u!4 &1312679303
 Transform:
   m_ObjectHideFlags: 0

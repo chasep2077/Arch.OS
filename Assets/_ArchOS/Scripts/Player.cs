@@ -4,11 +4,8 @@ using UnityEngine;
 
 namespace ArchOS
 {
-    public class Player : MonoBehaviour, IDamageable, IController, ICaster
+    public class Player : MonoBehaviour, IController, ICaster
     {
-        private Cyberdeck _deck;
-        private HealthComponent _healthComponent;
-
         [Header("Player Name")]
         [SerializeField] private string _name = "New Player";
 
@@ -23,20 +20,23 @@ namespace ArchOS
         public string Name => _name;
         public int InterfaceRank => _interfaceRank;
 
-        public int MaxHealth => _healthComponent != null ? _healthComponent.MaxHealth : _maxHealth;
-        public int Health => _healthComponent != null ? _healthComponent.Health : 0;
-        
+        public HealthComponent Health { get; private set; }
+
         public DeckQuality DeckQuality => _deckQuality;
-        public Cyberdeck Deck => _deck;
-        
-        public IReadOnlyList<ISlotable> InstalledModules => _deck?.InstalledModules;
+        public Cyberdeck Deck { get; private set; }
+
+        public IReadOnlyList<ISlotable> InstalledModules => Deck?.InstalledModules;
+
+        public PlayerStats Stats { get; private set; }
 
         private void Awake()
         {
-            _deck = new Cyberdeck(_deckQuality);
-            _healthComponent = new HealthComponent(_maxHealth);
+            Deck = new Cyberdeck(_deckQuality);
 
-            _healthComponent.OnDeath += HandlePlayerDeath;
+            Health = new HealthComponent(_maxHealth);
+            Stats = new PlayerStats(_interfaceRank);
+
+            Health.OnDeath += HandlePlayerDeath;
         }
 
         private void Start()
@@ -46,9 +46,9 @@ namespace ArchOS
 
         private void LoadStartingModules()
         {
-            foreach(ModuleSO moduleData in _startingModuleData)
+            foreach (ModuleSO moduleData in _startingModuleData)
             {
-                if(moduleData == null)
+                if (moduleData == null)
                 {
                     Debug.LogWarning("Player has a null starting module.");
                     continue;
@@ -56,7 +56,7 @@ namespace ArchOS
 
                 ISlotable module = moduleData.CreateInstance(this);
 
-                if (_deck.AddModule(module))
+                if (Deck.AddModule(module))
                 {
                     Debug.Log($"Loaded module '{module.Name}' onto {Name}'s cyberdeck.");
                 }
@@ -69,9 +69,9 @@ namespace ArchOS
 
         private void OnDestroy()
         {
-            if (_healthComponent != null)
+            if (Health != null)
             {
-                _healthComponent.OnDeath -= HandlePlayerDeath;
+                Health.OnDeath -= HandlePlayerDeath;
             }
         }
 
@@ -80,14 +80,20 @@ namespace ArchOS
             Debug.Log($"{_name} has flatlined!");
         }
 
-        public void Damage(int amount)
+
+
+
+
+        [ContextMenu("Test Program")]
+        private void TestProgram()
         {
-            _healthComponent?.Damage(amount);
+            Deck.TestingAllPrograms();
         }
 
-        public void Heal(int amount, bool overrideDead = false)
+        [ContextMenu("Print Stats")]
+        private void PrintStats()
         {
-            _healthComponent?.Heal(amount, overrideDead);
+            Stats.TestingPrintStats();
         }
     }
 }

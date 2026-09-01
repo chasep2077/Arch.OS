@@ -10,12 +10,18 @@ namespace ArchOS
 
         protected override void OnActivate()
         {
-            Debug.Log("Activated Eraser Program.");
+            if (Owner is not Player player) return;
+            Debug.Log($"Activated {Definition.Name} Program.");
+
+            player.Stats.Modify(StatModifier.Cloak, 2);
         }
 
         protected override void OnDeactivate()
         {
-            Debug.Log("Deactivated Eraser Program.");
+            if (Owner is not Player player) return;
+            Debug.Log($"Deactivated {Definition.Name} Program.");
+
+            player.Stats.Modify(StatModifier.Cloak, -2);
         }
     }
 }

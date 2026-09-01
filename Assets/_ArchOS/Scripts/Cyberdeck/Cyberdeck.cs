@@ -71,5 +71,30 @@ namespace ArchOS
         {
             return module != null && _installedModules.Contains(module);
         }
+
+        private bool running;
+        public void TestingAllPrograms()
+        {
+            if (!running)
+            {
+                running = true;
+                foreach (var module in _installedModules)
+                {
+                    if (module is not Program program) continue;
+
+                    program.Activate();
+                }
+            }
+            else
+            {
+                running = false;
+                foreach (var module in _installedModules)
+                {
+                    if (module is not Program program) continue;
+
+                    program.Deactivate();
+                }
+            }
+        }
     }
 }
