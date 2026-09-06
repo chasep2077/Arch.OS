@@ -2,9 +2,9 @@ using UnityEngine;
 
 namespace ArchOS
 {
-    public class Eraser : Program, ISlotable
+    public class Eraser : Program
     {
-        public Eraser(EraserSO definition, ICaster owner = null, ITargetable target = null) : base(definition, owner, target)
+        public Eraser(ProgramSO definition, ICaster owner = null, ITargetable target = null) : base(definition, owner, target)
         {
         }
 

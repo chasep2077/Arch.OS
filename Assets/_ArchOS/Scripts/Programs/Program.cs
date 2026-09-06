@@ -5,22 +5,22 @@ namespace ArchOS
 {
     public abstract class Program : ISlotable
     {
+        [SerializeField] private ProgramSO _definition;
+
         private readonly HealthComponent _health;
 
-        public ProgramSO Definition { get; }
+        public ItemSO Definition => _definition;
 
         // Definition
-        public string Name => Definition.Name;
-        public ProgramType ProgramType => Definition.ProgramType;
-        public int Atk => Definition.Atk;
-        public int Def => Definition.Def;
-        public int MaxRez => Definition.Rez;
-        public string Details => Definition.Details;
-        public int Cost => Definition.Cost;
-        public int SlotCount => 1;
-
-        // Runtime
+        public string Name => _definition.Name;
+        public string Description => _definition.Description;
+        public int Cost => _definition.Cost;
+        public ProgramType ProgramType => _definition.ProgramType;
+        public int Atk => _definition.Atk;
+        public int Def => _definition.Def;
+        public int MaxRez => _definition.Rez;
         public int Rez => _health.Health;
+        public int SlotCount => 1;
 
         public ICaster Owner { get; private set; }
         public ITargetable Target { get; private set; }
@@ -28,11 +28,13 @@ namespace ArchOS
         public bool IsActive { get; private set; }
         public bool IsDerezzed => _health.IsDead;
         public bool IsDestroyed { get; private set; }
-        public bool HasBeenUsed { get; private set;  }
+        public bool HasBeenUsed { get; private set; }
+
+        public ItemSO definition => throw new System.NotImplementedException();
 
         public Program(ProgramSO definition, ICaster owner = null, ITargetable target = null)
         {
-            Definition = definition;
+            _definition = definition;
             Owner = owner;
             Target = target;
 
@@ -41,16 +43,12 @@ namespace ArchOS
 
         public bool Activate()
         {
-            if (!CanActivate())
-            {
-                return false;
-            }
+            if (!CanActivate()) return false;
 
             Heal(MaxRez, true);
-
             IsActive = true;
 
-            if(ProgramType is ProgramType.Defender)
+            if (ProgramType is ProgramType.Defender)
             {
                 HasBeenUsed = true;
             }
@@ -86,12 +84,12 @@ namespace ArchOS
                 Destroy();
             }
         }
-        
-        public void Heal(int amount, bool overrideDead = false)
+
+        public void Heal(int amount, bool allowDead = false)
         {
             if (IsDestroyed) return;
 
-            _health.Heal(amount, overrideDead);
+            _health.Heal(amount, allowDead);
         }
 
         private bool CanActivate()

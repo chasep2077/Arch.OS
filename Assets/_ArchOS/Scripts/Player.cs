@@ -25,7 +25,7 @@ namespace ArchOS
         public DeckQuality DeckQuality => _deckQuality;
         public Cyberdeck Deck { get; private set; }
 
-        public IReadOnlyList<ISlotable> InstalledModules => Deck?.InstalledModules;
+        public IReadOnlyList<ISlotable> InstalledModules => Deck?.SlottedItems;
 
         public PlayerStats Stats { get; private set; }
 
@@ -58,7 +58,7 @@ namespace ArchOS
 
                 if (Deck.AddModule(module))
                 {
-                    Debug.Log($"Loaded module '{module.Name}' onto {Name}'s cyberdeck.");
+                    Debug.Log($"Loaded module '{module.Definition.Name}' onto {Name}'s cyberdeck.");
                 }
                 else
                 {

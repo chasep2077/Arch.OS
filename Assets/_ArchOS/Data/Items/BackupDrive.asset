@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 264b3ba6ab221324ab6a044aee513b09, type: 3}
+  m_Name: BackupDrive
+  m_EditorClassIdentifier: Assembly-CSharp::ArchOS.HardwareSO
+  _name: Backup Drive
+  _description: A Backup Drive requires 2 hardware slots to install. It has the ability
+    to quickly transfer your non-Black ICE programs to them milliseconds before they're
+    destroyed. They can then be reused, but remain in the state they were in exactly
+    before they were destroyed. Programs stored on a Backup Drive are destroyed as
+    soon as the drive is disconnected.
+  _cost: 100
+  _slotCount: 2

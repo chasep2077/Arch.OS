@@ -7,10 +7,10 @@ namespace ArchOS
 {
     public class Cyberdeck
     {
-        private readonly List<ISlotable> _installedModules = new();
+        private readonly List<ISlotable> _slottedItems = new();
 
         public DeckQuality Quality { get; private set; }
-        public IReadOnlyList<ISlotable> InstalledModules => _installedModules;
+        public IReadOnlyList<ISlotable> SlottedItems => _slottedItems;
         public int Cost => Quality switch
         {
             DeckQuality.Poor => 100,
@@ -25,7 +25,7 @@ namespace ArchOS
             DeckQuality.Excellent => 9,
             _ => 0
         };
-        public int CurrentSlots => _installedModules.Sum(module => module.SlotCount);
+        public int CurrentSlots => _slottedItems.Sum(module => module.Definition.SlotCount);
         public int AvailableSlots => MaxSlots - CurrentSlots;
 
         public Cyberdeck(DeckQuality quality = DeckQuality.Poor)
@@ -42,16 +42,16 @@ namespace ArchOS
         {
             if (module == null && ContainsModule(module)) return false;
 
-            return CurrentSlots + module.SlotCount <= MaxSlots;
+            return CurrentSlots + module.Definition.SlotCount <= MaxSlots;
         }
 
         public bool AddModule(ISlotable module)
         {
             if (!CanInstall(module)) return false;
 
-            _installedModules.Add(module);
+            _slottedItems.Add(module);
 
-            Debug.Log($"Module '{module.Name}' installed");
+            Debug.Log($"Module '{module.Definition.Name}' installed");
 
             return true;
         }
@@ -60,16 +60,16 @@ namespace ArchOS
         {
             if (module == null) return false;
 
-            if (!_installedModules.Remove(module)) return false;
+            if (!_slottedItems.Remove(module)) return false;
 
-            Debug.Log($"Module '{module.Name}' removed.");
+            Debug.Log($"Module '{module.Definition.Name}' removed.");
 
             return true;
         }
 
         public bool ContainsModule(ISlotable module)
         {
-            return module != null && _installedModules.Contains(module);
+            return module != null && _slottedItems.Contains(module);
         }
 
         private bool running;
@@ -78,7 +78,7 @@ namespace ArchOS
             if (!running)
             {
                 running = true;
-                foreach (var module in _installedModules)
+                foreach (var module in _slottedItems)
                 {
                     if (module is not Program program) continue;
 
@@ -88,7 +88,7 @@ namespace ArchOS
             else
             {
                 running = false;
-                foreach (var module in _installedModules)
+                foreach (var module in _slottedItems)
                 {
                     if (module is not Program program) continue;
 

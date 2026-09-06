@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1d2fc3e890bf774b9dc09757c473e52, type: 3}
+  m_Name: Hellhound
+  m_EditorClassIdentifier: Assembly-CSharp::ArchOS.BlackIceSO
+  _name: Hellhound
+  _description: Does 2d6 damage direct to the Netrunner's brain. Unless insulated,
+    their Cyberdeck catches fire along with their clothing. Until they spend a Meat
+    Action to put themselves out, they take 2 damage to their HP whenever they end
+    their turn. Multiple instances of this effect cannot stack.
+  _cost: 500
+  _programType: 1
+  _atk: 6
+  _def: 2
+  _rez: 20
+  _per: 6
+  _spd: 6
